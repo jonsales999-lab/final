@@ -6,7 +6,7 @@ import enum
 from datetime import datetime
 
 db = create_engine(
-    'mysql+mysqlconnector://root:123456789@localhost:3306/ecoplay'
+    'mysql+mysqlconnector://root:GUvNdigPYtfgtcbGdCfTgTqRlwLZoNoT@trolley.proxy.rlwy.net:46075/railway'
 )
 
 Base = declarative_base()
