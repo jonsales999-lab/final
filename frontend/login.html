@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Leadership Login Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-green": "#05cd13",
+                        "primary-red": "#ff1717",
+                        "primary-yellow": "#ffc809",
+                        "primary-blue": "#012df0",
+                        "background-light": "#f8fafc",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">.material-symbols-outlined {
+    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48
+    }
+.vibrant-header-accent {
+    background: linear-gradient(90deg, #05cd13 0%, #ffc809 33%, #012df0 66%, #ff1717 100%)
+    }
+.custom-tooltip {
+    position: absolute;
+    top: -45px;
+    left: 0;
+    background: #1a1a1a;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 50
+    }
+.custom-tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 20px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #1a1a1a
+    }
+.leaf-pattern {
+    background-color: #fff;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAhVriWUQenOpsyx7JsQdtrHBuggW0uJSmcD_ifRaMtHRHg-Qql_fuzARx1tWdTbM0ag0xadnoN7henQs-4fsJkp9sRrwDFLKsYaWf0sgZCPEy8L3pWzcAiQEKZ94M0uCDtvgrOj8hJ1eLO6KBH3ilYmBDUwrKbc7mt0EhKKTMdN3ve98UVUF8olIMLWrtlaxTiFs8BVB6ZUW-zkKp9NckhYQitvkbb5LMs1StOdVGKeTGyCcdNN6aKUQ60XlKAoRJmk-Wbz5sR11Kn);
+    opacity: 0.05
+    }
+.recycling-pattern {
+    background-image: radial-gradient(circle at 2px 2px, rgba(5, 205, 19, 0.05) 1px, transparent 0);
+    background-size: 24px 24px
+    }</style>
+</head>
+<body class="bg-background-light font-display min-h-screen flex flex-col">
+<main class="flex-1 flex items-center justify-center p-6">
+<div class="max-w-[1000px] w-full bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[650px] border border-gray-100 relative">
+<div class="absolute inset-0 leaf-pattern pointer-events-none"></div>
+<div class="w-full md:w-5/12 relative overflow-hidden bg-gray-50 flex items-center justify-center p-12 border-r border-gray-100">
+<div class="absolute top-0 left-0 w-full h-2 vibrant-header-accent"></div>
+<div class="absolute inset-0 recycling-pattern opacity-50"></div>
+<div class="relative z-10 w-full h-full flex flex-col items-center justify-center gap-10">
+<div class="grid grid-cols-2 gap-6 w-64 h-64">
+<div class="bg-primary-green rounded-2xl rotate-6 flex items-center justify-center text-white shadow-xl transform hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-5xl">recycling</span>
+</div>
+<div class="bg-primary-yellow rounded-full -rotate-12 flex items-center justify-center text-white shadow-xl transform hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-5xl">eco</span>
+</div>
+<div class="bg-primary-red rounded-xl -rotate-6 flex items-center justify-center text-white shadow-xl transform hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-5xl">public</span>
+</div>
+<div class="bg-primary-blue rounded-3xl rotate-12 flex items-center justify-center text-white shadow-xl transform hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-5xl">water_drop</span>
+</div>
+</div>
+<div class="text-center space-y-4">
+<h3 class="text-3xl font-black text-gray-800 tracking-tight">Eco-Liderança</h3>
+<p class="text-gray-500 max-w-xs leading-relaxed font-medium">Liderando a mudança para um futuro sustentável e consciente.</p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-7/12 p-8 md:p-16 flex flex-col justify-center bg-white relative z-10">
+<div class="mb-10">
+<h1 class="text-4xl font-black text-gray-900 mb-2">Login</h1>
+<p class="text-gray-500 font-semibold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-green"></span>
+                    Acesse o painel do seu time ambiental
+                </p>
+</div>
+<form id="loginForm" class="space-y-6">
+<div class="flex flex-col gap-2 relative">
+<label class="text-gray-700 text-xs font-black uppercase tracking-widest" for="email">Email</label>
+<div class="relative">
+<div class="custom-tooltip">Preencha este campo</div>
+<input class="form-input flex w-full rounded-xl text-gray-900 border-2 border-gray-100 focus:ring-0 focus:border-primary-green bg-white h-14 px-4 text-base font-medium placeholder:text-gray-300 transition-all" id="email" name="email" placeholder="nome@empresa.eco.br" type="email" value=""/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 text-primary-green/30">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="text-gray-700 text-xs font-black uppercase tracking-widest" for="password">Senha</label>
+</div>
+<div class="relative flex w-full items-stretch rounded-xl border-2 border-gray-100 focus-within:border-primary-blue bg-white overflow-hidden transition-all">
+<input class="form-input flex w-full border-none focus:ring-0 bg-transparent h-14 px-4 text-gray-900 font-medium placeholder:text-gray-300" id="password" name="senha" placeholder="••••••••" type="password"/>
+<div class="flex items-center px-4 text-gray-400 cursor-pointer hover:text-primary-blue transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-3 rounded-xl h-14 bg-primary-blue text-white text-lg font-black shadow-xl shadow-primary-blue/30 hover:bg-[#0025cc] transition-all transform hover:scale-[1.02] active:scale-[0.98]" type="submit">
+<span>Entrar</span>
+<span class="material-symbols-outlined text-xl">login</span>
+</button>
+</form>
+<pre id="output" class="mt-6 p-4 bg-gray-100 rounded-xl text-sm text-red-600 font-mono whitespace-pre-wrap min-h-[32px]"></pre>
+</form>
+<div class="mt-12 pt-8 border-t border-gray-100">
+<div class="flex flex-col gap-4 text-center">
+<p class="text-gray-600 text-sm leading-relaxed max-w-xs mx-auto font-medium">
+                        Voce ainda nao tem uma equipe, clique aqui abaixo para criar o seu cadastro de lider, para criar sua equipe:
+                    </p>
+<a class="text-primary-red font-black text-base hover:text-primary-red/80 flex items-center justify-center gap-2 group transition-all" href="form-leader.html">
+<span class="hover:underline">Criar cadastro de lider</span>
+<span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="px-6 py-10 flex flex-col md:flex-row justify-center items-center gap-6 text-gray-400 text-[11px] font-bold uppercase tracking-widest">
+<div class="flex gap-8">
+<a class="hover:text-primary-green transition-colors" href="#">Privacidade</a>
+<a class="hover:text-primary-green transition-colors" href="#">Termos de Uso</a>
+<a class="hover:text-primary-green transition-colors" href="#">Suporte</a>
+</div>
+<div class="hidden md:block w-1.5 h-1.5 rounded-full bg-gray-200"></div>
+<p>© 2024 Eco-Liderança Platform. Compromisso com a Natureza.</p>
+</footer>
+
+<script src="login.js"></script>
+</body>
+</html>

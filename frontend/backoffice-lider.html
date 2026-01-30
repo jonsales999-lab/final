@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoPlay - Backoffice do Líder</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#05cd13",
+            secondary: "#012df0",
+            accent: "#ffc809",
+            danger: "#ff1717",
+            "eco-base": "#f8fafc",
+            "eco-dark": "#0f172a",
+          },
+          fontFamily: {
+            display: ["Outfit", "sans-serif"],
+            sans: ["Inter", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.75rem",
+          },
+        },
+      },
+    };
+  </script>
+  <style type="text/tailwindcss">
+    /* Removido .glass pois @apply não funciona no Tailwind CDN. Use as classes diretamente nos elementos HTML. */
+    .bg-pattern {
+      background-color: #f8fafc;
+      background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
+      background-size: 24px 24px;
+    }
+    .dark .bg-pattern {
+      background-color: #0f172a;
+      background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
+    }
+    .floating-element {
+      pointer-events: none;
+      position: fixed;
+      z-index: 0;
+      opacity: 0.15;
+    }
+    .dark .floating-element {
+      opacity: 0.05;
+    }
+    .leaf-icon {
+      color: #05cd13;
+    }
+    .symbol-icon {
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-pattern font-sans text-slate-800 dark:text-slate-200 min-h-screen transition-colors duration-200 relative">
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <span class="material-symbols-outlined floating-element leaf-icon text-[120px] top-[15%] left-[5%]">leaf_spark</span>
+    <span class="material-symbols-outlined floating-element symbol-icon text-[100px] top-[40%] right-[10%]">recycling</span>
+    <span class="material-symbols-outlined floating-element leaf-icon text-[80px] bottom-[20%] left-[12%]">eco</span>
+    <span class="material-symbols-outlined floating-element symbol-icon text-[140px] bottom-[5%] right-[5%]">cycle</span>
+    <span class="material-symbols-outlined floating-element leaf-icon text-[60px] top-[10%] right-[30%]">nest_eco_leaf</span>
+    <span class="material-symbols-outlined floating-element symbol-icon text-[90px] bottom-[40%] left-[40%]">energy_savings_leaf</span>
+  </div>
+  <header class="sticky top-0 z-50 glass border-b border-slate-200/50 dark:border-slate-800/50 px-4 md:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
+          <span class="material-symbols-outlined text-2xl">eco</span>
+        </div>
+        <div>
+          <h1 class="text-xl font-display font-bold text-slate-900 dark:text-white leading-none">EcoPlay</h1>
+          <p class="text-[10px] font-black text-primary uppercase tracking-widest">Backoffice do Líder</p>
+        </div>
+      </div>
+      <nav class="flex items-center gap-2 md:gap-6">
+        <a class="flex items-center gap-1.5 text-sm font-semibold hover:text-primary transition-colors text-slate-600 dark:text-slate-400" href="ranking.html">
+          <span class="material-symbols-outlined text-lg">leaderboard</span>
+          Placar geral
+        </a>
+        <button id="btnSair" class="flex items-center gap-1.5 px-4 py-2 bg-danger text-white rounded-lg text-sm font-bold shadow-lg shadow-red-500/20 hover:brightness-110 transition-all">
+          <span class="material-symbols-outlined text-lg">logout</span>
+          Sair
+        </button>
+      </nav>
+    </div>
+  </header>
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 px-4 md:px-8 py-8">
+    <aside class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-800/50 shadow-xl shadow-slate-200/30 dark:shadow-none rounded-2xl p-6 mb-8 md:mb-0 md:w-64 flex-shrink-0">
+      <nav class="space-y-8">
+        
+        <section>
+          <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Tarefas</h2>
+          <ul class="space-y-2">
+            <li><a class="block px-3 py-2 rounded-lg hover:bg-accent/10 text-slate-700 dark:text-slate-300 font-semibold transition-colors" href="tarefas.html">Lista de Tarefas</a></li>
+          </ul>
+        </section>
+      </nav>
+    </aside>
+    <main class="flex-1 space-y-8">
+      <section class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-800/50 shadow-xl shadow-slate-200/30 dark:shadow-none p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="mb-3">
+          <p class="text-secondary font-bold uppercase text-xs tracking-widest">01 a 30 de abril / 2026</p>
+          <h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white">Santa Luzia / MG</h1>
+          <p class="text-slate-500 dark:text-slate-400">Acompanhe o placar e movimente sua equipe.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass p-6 rounded-2xl border-t-4 border-primary flex flex-col items-start">
+            <span class="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Equipe</span>
+            <span class="text-2xl font-black text-slate-900 dark:text-white" id="resumoEquipeId">-</span>
+          </div>
+          <div class="glass p-6 rounded-2xl border-t-4 border-accent flex flex-col items-start">
+            <span class="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Meu placar</span>
+            <span class="text-2xl font-black text-slate-900 dark:text-white" id="resumoPontuacao">0 Pts</span>
+          </div>
+          <div class="glass p-6 rounded-2xl border-t-4 border-secondary flex flex-col items-start">
+            <span class="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Posição</span>
+            <span class="text-2xl font-black text-slate-900 dark:text-white" id="resumoPosicao">-</span>
+          </div>
+        </div>
+      </section>
+      <section id="actions" class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-800/50 shadow-xl shadow-slate-200/30 dark:shadow-none p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-display font-bold text-slate-900 dark:text-white">Gestão da equipe</h2>
+          <button id="btnRefresh" class="bg-slate-100 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-2 px-4 rounded-xl border border-slate-200 dark:border-slate-700 transition-all">Atualizar</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <button id="btnCadastro" class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-primary/20">Cadastrar participante</button>
+            <label for="selectFiscalExterno" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Fiscal externo:</label>
+            <select id="selectFiscalExterno" class="w-full px-4 py-3 rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800/50 focus:ring-secondary focus:border-secondary transition-all"></select>
+            <button id="btnEscolherFiscal" class="bg-secondary text-white px-6 py-2 rounded-xl font-bold hover:brightness-110 transition-all text-sm shadow-lg shadow-secondary/20">Convidar fiscal externo</button>
+          </div>
+          <div class="space-y-4">
+            <label for="selectRemoverMembro" class="block text-sm font-semibold text-slate-700 dark:text-slate-300">Remover membro:</label>
+            <select id="selectRemoverMembro" class="w-full px-4 py-3 rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800/50 focus:ring-danger focus:border-danger transition-all"></select>
+            <button id="btnRemoverMembro" class="bg-danger text-white px-6 py-2 rounded-xl font-bold hover:brightness-110 transition-all text-sm shadow-lg shadow-red-500/20">Remover</button>
+          </div>
+        </div>
+      </section>
+      <section id="resumo" class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-800/50 shadow-xl shadow-slate-200/30 dark:shadow-none p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+        <h2 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-4">Resumo</h2>
+        <div id="resumoDados" class="text-slate-600 dark:text-slate-300">Carregando...</div>
+      </section>
+      <section id="membros" class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-800/50 shadow-xl shadow-slate-200/30 dark:shadow-none p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+        <h2 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-4">Membros</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50/50 dark:bg-slate-800/30">
+                <th class="px-8 py-4 text-[11px] font-black uppercase text-slate-400 tracking-widest">Nome</th>
+                <th class="px-8 py-4 text-[11px] font-black uppercase text-slate-400 tracking-widest">Função</th>
+                <th class="px-8 py-4 text-[11px] font-black uppercase text-slate-400 tracking-widest">Email</th>
+              </tr>
+            </thead>
+            <tbody id="membrosBody" class="divide-y divide-slate-100 dark:divide-slate-800">
+              <tr><td colspan="3">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-800/50 shadow-xl shadow-slate-200/30 dark:shadow-none p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+        <h2 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-4">Log</h2>
+        <pre id="output" class="bg-slate-100 dark:bg-slate-800 rounded-xl p-4 text-sm text-red-600 font-mono whitespace-pre-wrap min-h-[32px]"></pre>
+      </section>
+    </main>
+  </div>
+  <script src="backoffice-lider.js"></script>
+</body>
+</html>

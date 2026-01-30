@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>EcoPlay - Início</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary-green': '#05cd13',
+            'primary-yellow': '#ffc809',
+            'primary-blue': '#012df0',
+            'primary-red': '#ff1717',
+            'background-light': '#f8fafc',
+          },
+          fontFamily: {
+            display: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background-light font-display min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="w-full bg-white shadow-sm px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-7 h-7 bg-primary-green rounded-full mr-2"></span>
+      <span class="text-2xl font-black text-gray-900 tracking-tight">EcoPlay<span class="text-primary-green">.</span></span>
+    </div>
+    <nav class="flex items-center gap-4 md:gap-8">
+      <button id="goBackoffice" class="text-gray-700 font-bold hover:text-primary-green transition-colors">Ver equipe</button>
+      <button id="goFiscal" class="text-gray-700 font-bold hover:text-primary-green transition-colors">Painel do fiscal</button>
+      <button id="goAdmin" class="text-gray-700 font-bold hover:text-primary-green transition-colors">Área do admin</button>
+      <button id="goLeader" style="display:none" class="text-gray-700 font-bold hover:text-primary-green transition-colors">Área do Líder</button>
+      <button id="goTarefas" class="bg-primary-green text-white font-black px-5 py-2 rounded-xl shadow hover:bg-green-700 transition-colors">Tarefas</button>
+      <button id="toggleTheme" class="ml-2 text-xl">🌙</button>
+    </nav>
+  </header>
+
+  <!-- Main Dashboard -->
+  <main class="flex-1 w-full max-w-5xl mx-auto p-4 md:p-8">
+    <section class="mb-8">
+      <p class="text-primary-green font-black uppercase text-xs tracking-widest mb-2">Reciclômetro em tempo real</p>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+        <h1 class="text-3xl md:text-4xl font-black text-gray-900">EcoPlay™ Dashboard</h1>
+        <div class="flex items-center gap-2 text-gray-400 text-sm">
+          <span class="material-symbols-outlined align-middle">location_on</span>
+          <span>Sta Luzia / MG</span>
+          <span class="ml-4">26/12/2025 | 14:42</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow p-6 md:p-10 mb-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <p class="text-primary-green font-black uppercase text-xs tracking-widest mb-2">Meta Global</p>
+          <p class="text-gray-500 text-sm mb-2">Progresso geral de coleta</p>
+          <span class="text-5xl font-black text-primary-green">77%</span>
+        </div>
+        <div class="flex flex-col items-end">
+          <span class="text-2xl font-black text-gray-700">15,420 <span class="text-gray-400 font-normal text-base">/ 20,000 kg</span></span>
+          <span class="text-gray-400 text-xs font-bold flex items-center gap-1"><span class="material-symbols-outlined text-lg">recycling</span> Total coletado</span>
+        </div>
+      </div>
+      <div class="w-full h-5 bg-gray-200 rounded-full mt-6 mb-2 overflow-hidden">
+        <div class="h-full bg-gradient-to-r from-primary-green via-primary-yellow to-primary-blue" style="width: 77%"></div>
+      </div>
+      <div class="flex justify-between text-xs text-gray-400 font-bold mt-1">
+        <span>Início</span>
+        <span>Meta</span>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl shadow p-4 flex flex-col items-start">
+        <span class="text-gray-400 font-bold text-xs mb-1">Papel</span>
+        <span class="text-2xl font-black text-gray-900">124.5 <span class="text-base font-normal">kg</span></span>
+        <span class="text-green-600 text-xs font-bold mt-1">+1.2%</span>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 flex flex-col items-start">
+        <span class="text-gray-400 font-bold text-xs mb-1">Metal</span>
+        <span class="text-2xl font-black text-gray-900">88.2 <span class="text-base font-normal">kg</span></span>
+        <span class="text-green-600 text-xs font-bold mt-1">+0.5%</span>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 flex flex-col items-start">
+        <span class="text-gray-400 font-bold text-xs mb-1">Plástico</span>
+        <span class="text-2xl font-black text-gray-900">210.0 <span class="text-base font-normal">kg</span></span>
+        <span class="text-red-600 text-xs font-bold mt-1">-0.2%</span>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 flex flex-col items-start">
+        <span class="text-gray-400 font-bold text-xs mb-1">Vidro</span>
+        <span class="text-2xl font-black text-gray-900">45.7 <span class="text-base font-normal">kg</span></span>
+        <span class="text-green-600 text-xs font-bold mt-1">+2.1%</span>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 flex flex-col items-start">
+        <span class="text-gray-400 font-bold text-xs mb-1">Isopor</span>
+        <span class="text-2xl font-black text-gray-900">12.3 <span class="text-base font-normal">kg</span></span>
+        <span class="text-gray-400 text-xs font-bold mt-1">+0.0%</span>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 flex flex-col items-start">
+        <span class="text-gray-400 font-bold text-xs mb-1">Borracha</span>
+        <span class="text-2xl font-black text-gray-900">05.1 <span class="text-base font-normal">kg</span></span>
+        <span class="text-green-600 text-xs font-bold mt-1">+1.1%</span>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 flex flex-col items-start">
+        <span class="text-gray-400 font-bold text-xs mb-1">Tecido</span>
+        <span class="text-2xl font-black text-gray-900">18.9 <span class="text-base font-normal">kg</span></span>
+        <span class="text-green-600 text-xs font-bold mt-1">+0.5%</span>
+      </div>
+      <div class="bg-white rounded-xl shadow p-4 flex flex-col items-start">
+        <span class="text-gray-400 font-bold text-xs mb-1">Sachês</span>
+        <span class="text-2xl font-black text-gray-900">02.4 <span class="text-base font-normal">kg</span></span>
+        <span class="text-green-600 text-xs font-bold mt-1">+0.08%</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="px-6 py-10 flex flex-col md:flex-row justify-center items-center gap-6 text-gray-400 text-[11px] font-bold uppercase tracking-widest mt-8">
+    <div class="flex gap-8">
+      <a class="hover:text-primary-green transition-colors" href="#">Privacidade</a>
+      <a class="hover:text-primary-green transition-colors" href="#">Termos de Uso</a>
+      <a class="hover:text-primary-green transition-colors" href="#">Suporte</a>
+    </div>
+    <div class="hidden md:block w-1.5 h-1.5 rounded-full bg-gray-200"></div>
+    <p>© 2025 EcoPlay. Juntos por um futuro sustentável.</p>
+  </footer>
+
+  <script>
+    document.getElementById('goBackoffice').addEventListener('click', () => {
+      window.location.href = 'backoffice.html';
+    });
+    document.getElementById('goFiscal').addEventListener('click', () => {
+      window.location.href = 'backoffice-fiscal.html';
+    });
+    document.getElementById('goAdmin').addEventListener('click', () => {
+      window.location.href = 'admin.html';
+    });
+    document.getElementById('goLeader').addEventListener('click', () => {
+      window.location.href = 'backoffice-lider.html';
+    });
+    document.getElementById('goTarefas').addEventListener('click', () => {
+      window.location.href = 'tarefas.html';
+    });
+    // Exibe/oculta botões do menu conforme o papel do usuário
+    try {
+      const userInfo = JSON.parse(localStorage.getItem('user_info'));
+      const papel = (userInfo?.funcao || '').toUpperCase();
+      // Se for admin, mostra só Área do Admin
+      if (userInfo?.is_admin) {
+        document.getElementById('goAdmin').style.display = '';
+        document.getElementById('goLeader').style.display = 'none';
+        document.getElementById('goFiscal').style.display = 'none';
+      } else {
+        // Se for líder, esconde Painel do Fiscal e Área do Admin, mostra Área do Líder
+        if (papel.includes('LIDER') || papel.includes('LÍDER')) {
+          document.getElementById('goLeader').style.display = '';
+          document.getElementById('goFiscal').style.display = 'none';
+          document.getElementById('goAdmin').style.display = 'none';
+        }
+        // Se for fiscal, esconde Área do Líder e Área do Admin
+        if (papel.includes('FISCAL')) {
+          document.getElementById('goLeader').style.display = 'none';
+          document.getElementById('goFiscal').style.display = '';
+          document.getElementById('goAdmin').style.display = 'none';
+        }
+      }
+    } catch {}
+    // Tema escuro (opcional)
+    document.getElementById('toggleTheme').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+  </script>
+</body>
+</html>

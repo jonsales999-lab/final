@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoPlay - Tarefas</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#007AFF", // iOS Blue
+                        "background-light": "#F2F2F7",
+                        "background-dark": "#1C1C1E",
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#2C2C2E",
+                        "eco-green": "#34C759",
+                        "eco-yellow": "#FFCC00",
+                        "eco-red": "#FF3B30",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .ios-blur { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    </style>
+        <style>
+          /* Estilo para selects das tarefas */
+          .select-tarefa {
+            width: 180px;
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid #007AFF;
+            background: #F2F2F7;
+            font-size: 1rem;
+          }
+        </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .option-card {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+      text-align: left;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+    .option-card:hover { transform: translateY(-1px); box-shadow: 0 10px 25px rgba(0,0,0,0.04); }
+    .option-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0ea5e9;
+      background: #e0f2fe;
+      flex-shrink: 0;
+    }
+    .option-text { display: flex; flex-direction: column; gap: 2px; }
+    .option-title { font-weight: 700; color: #0f172a; font-size: 0.98rem; }
+    .option-sub { font-size: 0.85rem; color: #64748b; }
+    .accent-blue .option-icon { background: #e0f2fe; color: #0284c7; }
+    .accent-0 .option-icon { background: #e0f2fe; color: #0284c7; }
+    .accent-1 .option-icon { background: #dcfce7; color: #16a34a; }
+    .accent-2 .option-icon { background: #fff7ed; color: #f59e0b; }
+    .accent-3 .option-icon { background: #f3e8ff; color: #a855f7; }
+    .accent-4 .option-icon { background: #fee2e2; color: #ef4444; }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="h-12 w-full"></div>
+<header class="sticky top-0 z-30 bg-background-light/80 dark:bg-background-dark/80 ios-blur px-6 py-4">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-icons-round text-xl">eco</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-primary">EcoPlay</span>
+</div>
+<button class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" onclick="carregarTarefas()">
+<span class="material-icons-round text-slate-500 dark:text-slate-400">refresh</span>
+</button>
+</div>
+<h1 class="text-3xl font-extrabold tracking-tight">Tarefas</h1>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Clique na tarefa para ver detalhes e participar.</p>
+</header>
+<main class="px-4 pb-24 pt-2">
+  <div id="lista-tarefas" class="space-y-3 mx-auto max-w-xl"></div>
+</main>
+<dialog id="tarefa-modal" class="rounded-2xl p-0 border-0 max-w-lg w-[90vw]">
+  <div class="p-6 bg-white dark:bg-card-dark text-slate-900 dark:text-slate-100 rounded-2xl shadow-xl">
+    <h2 class="text-lg font-bold mb-2">Tarefa</h2>
+    <p id="modal-texto" class="text-sm text-slate-600 dark:text-slate-300"></p>
+    <p id="modal-pontuacao" class="text-sm text-slate-600 dark:text-slate-300 mt-1"></p>
+    <div class="hidden">
+      <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mt-4">ID da equipe</label>
+      <input id="equipe-id-input" type="number" class="w-full mt-1 px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900" placeholder="Informe o ID da sua equipe" />
+    </div>
+    <div class="flex gap-3 justify-end mt-4">
+      <button id="btn-cancelar" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-100">Cancelar</button>
+      <button id="btn-iniciar" class="px-4 py-2 rounded-xl bg-blue-600 text-white">Iniciar tarefa</button>
+    </div>
+  </div>
+</dialog>
+<dialog id="modal-nao-fiscal" class="rounded-2xl p-0 border-0 max-w-md w-[90vw]">
+  <div class="p-6 bg-white dark:bg-card-dark text-slate-900 dark:text-slate-100 rounded-2xl shadow-xl">
+    <h2 class="text-lg font-bold mb-2">Apenas fiscais</h2>
+    <p class="text-sm text-slate-600 dark:text-slate-300">
+      Tarefas podem ser iniciadas apenas por fiscais ou administradores.
+      Solicite ao seu fiscal para iniciar a tarefa para a sua equipe.
+    </p>
+    <div class="flex justify-end mt-4">
+      <button id="btn-nao-fiscal-fechar" class="px-4 py-2 rounded-xl bg-blue-600 text-white">Entendi</button>
+    </div>
+  </div>
+</dialog>
+<!-- Navegação removida para focar apenas na lista dinâmica de tarefas -->
+<script src="tarefas.js"></script>
+</body>
+</html>

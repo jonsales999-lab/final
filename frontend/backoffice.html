@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Minha Equipe | EcoPlay College</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#05cd13",
+            danger: "#ff1717",
+            warning: "#ffc809",
+            accent: "#012df0",
+            "background-light": "#f8fafc",
+            "background-dark": "#0f172a",
+          },
+          fontFamily: {
+            display: ["Inter", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "12px",
+          },
+        },
+      },
+    };
+  </script>
+  <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200">
+<nav class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<span class="material-icons-round text-primary text-3xl">eco</span>
+<span class="font-bold text-xl tracking-tight">EcoPlay<span class="text-primary">College</span></span>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<button id="goBackoffice" class="font-semibold text-primary border-b-2 border-primary pb-1">Minha Equipe</button>
+<button id="goFiscal" class="font-semibold text-slate-700 dark:text-slate-200 hover:text-primary transition-colors">Painel do fiscal</button>
+<button id="goAdmin" class="font-semibold text-slate-700 dark:text-slate-200 hover:text-primary transition-colors">Área do admin</button>
+<button id="goTarefas" class="bg-primary text-white font-bold px-5 py-2 rounded-xl shadow hover:bg-green-700 transition-colors">Tarefas</button>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button id="toggleTheme" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-xl">🌙</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full font-medium transition-all">
+<span class="material-icons-round text-lg">logout</span>
+<span>Sair</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<nav class="flex text-sm text-slate-500 mb-2">
+<span>Dashboard</span>
+<span class="mx-2">/</span>
+<span class="text-primary font-medium">Minha Equipe</span>
+</nav>
+<h1 class="text-4xl font-extrabold text-slate-900 dark:text-white">Santa Luzia / MG</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-2">
+<span class="material-icons-round text-sm">calendar_today</span>
+                    01 a 30 de abril / 2026
+                </p>
+</div>
+<div class="bg-accent text-white px-8 py-6 rounded-2xl shadow-lg shadow-accent/20 flex items-center gap-6 min-w-[320px]">
+<div class="bg-white/20 p-3 rounded-xl">
+<span class="material-icons-round text-3xl">timer</span>
+</div>
+<div>
+<p class="text-white/80 text-sm font-medium uppercase tracking-wider">A competição finaliza em:</p>
+<div class="flex items-baseline gap-1">
+<span class="text-4xl font-black">21</span>
+<span class="text-lg font-bold">dias</span>
+</div>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-5">
+<div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-icons-round text-3xl">groups</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Equipe</p>
+<p class="text-2xl font-bold" id="resumoEquipeId">-</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-5">
+<div class="w-16 h-16 rounded-2xl bg-warning/10 flex items-center justify-center text-warning">
+<span class="material-icons-round text-3xl">stars</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Meu placar</p>
+<p class="text-2xl font-bold" id="resumoPontuacao">0 Pts</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-5">
+<div class="w-16 h-16 rounded-2xl bg-danger/10 flex items-center justify-center text-danger">
+<span class="material-icons-round text-3xl">leaderboard</span>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Posição Atual</p>
+<p class="text-2xl font-bold" id="resumoPosicao">-</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<section class="lg:col-span-2">
+<div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
+<div class="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-icons-round text-primary">people_alt</span>
+                            Membros da Equipe
+                        </h2>
+<span class="text-sm font-medium px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-500" id="membrosCount">0 membros</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Nome</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Função</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Papel</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Email</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800" id="membrosBody">
+<tr>
+<td class="px-6 py-12 text-center text-slate-400 italic" colspan="4">
+<div class="flex flex-col items-center gap-3">
+<span class="material-icons-round text-4xl opacity-20">hourglass_empty</span>
+                                            Carregando lista de membros...
+                                        </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="space-y-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+<h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-icons-round text-primary">analytics</span>
+                        Resumo
+                    </h2>
+<div class="flex flex-col items-center justify-center py-8 text-slate-400" id="resumoDados">
+<span class="material-icons-round animate-spin text-3xl mb-3 text-primary">sync</span>
+<p class="text-sm">Carregando dados do resumo...</p>
+</div>
+</div>
+<div class="bg-gradient-to-br from-primary to-green-600 p-6 rounded-2xl shadow-lg text-white">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-icons-round text-3xl">speed</span>
+<h2 class="text-lg font-bold leading-tight">Dicas para turbinar sua equipe</h2>
+</div>
+<p class="text-white/80 text-sm mb-6">Aumente sua produtividade e escale no ranking com nossas sugestões personalizadas.</p>
+<button class="w-full bg-white text-primary font-bold py-3 rounded-xl hover:bg-slate-100 transition-colors">
+                        Ver Recomendações
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<footer class="mt-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary text-2xl">eco</span>
+<span class="font-bold text-lg tracking-tight">EcoPlay<span class="text-primary">College</span></span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                        Plataforma líder em engajamento estudantil e sustentabilidade corporativa dentro do ambiente acadêmico.
+                    </p>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-6 uppercase text-xs tracking-widest">Suporte e Contato</h3>
+<ul class="space-y-4">
+<li>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 text-sm" href="#">
+<span class="material-icons-round text-base">support_agent</span>
+                                Comunique-se com a Direção
+                            </a>
+</li>
+<li>
+<a class="text-slate-500 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 text-sm" href="mailto:equipe@ecoplaybrasil.com">
+<span class="material-icons-round text-base">mail</span>
+                                equipe@ecoplaybrasil.com
+                            </a>
+</li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-6 uppercase text-xs tracking-widest">Fale Conosco</h3>
+<a class="inline-flex items-center gap-3 px-6 py-3 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-xl font-bold transition-all shadow-md hover:shadow-lg" href="https://wa.me/5531999999999" target="_blank">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>
+                        (31) 99999-9999
+                    </a>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 text-center text-slate-400 text-xs">
+                © 2024 EcoPlay College. Todos os direitos reservados.
+            </div>
+</div>
+</footer>
+<script>
+  document.getElementById('goBackoffice')?.addEventListener('click', () => {
+    window.location.href = 'backoffice.html';
+  });
+  document.getElementById('goFiscal')?.addEventListener('click', () => {
+    window.location.href = 'backoffice-fiscal.html';
+  });
+  document.getElementById('goAdmin')?.addEventListener('click', () => {
+    window.location.href = 'admin.html';
+  });
+  document.getElementById('goTarefas')?.addEventListener('click', () => {
+    window.location.href = 'tarefas.html';
+  });
+  document.getElementById('toggleTheme')?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+  });
+</script>
+<script src="backoffice.js"></script>
+</body>
+</html>

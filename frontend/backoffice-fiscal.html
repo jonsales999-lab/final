@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backoffice Fiscal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7mQ1Q1hZp6j5l9z6M4bQZ6jIW3sZ1FQqK3s" crossorigin="anonymous">
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-soft: #e7efff;
+      --success: #16a34a;
+      --border: #e5e7eb;
+    }
+    body {
+      background: var(--bg);
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .page-wrap { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+    .hero {
+      background: linear-gradient(135deg, #e8f0ff 0%, #f5f7fb 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+      margin-bottom: 20px;
+    }
+    .hero h1 { font-size: 24px; font-weight: 800; margin: 0; }
+    .hero p { margin: 4px 0 0; color: var(--muted); }
+    .section-title { font-weight: 700; font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      margin-bottom: 20px;
+    }
+    .equipe-card { border: 1px solid var(--border); border-radius: 16px; padding: 16px; background: #fff; box-shadow: 0 6px 18px rgba(15,23,42,0.05); margin-bottom: 12px; }
+    .equipe-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .equipe-name { font-weight: 800; font-size: 18px; margin: 0; }
+    .badge { padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.2px; }
+    .badge-success { background: #ecfdf3; color: #15803d; border: 1px solid #bbf7d0; }
+    .badge-muted { background: #eef2ff; color: #4338ca; border: 1px solid #e0e7ff; }
+    .subinfo { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+    .task-list { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-direction: column; gap: 10px; }
+    .task-item { border: 1px solid var(--border); border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: space-between; background: var(--card); }
+    .task-left { display: flex; flex-direction: column; }
+    .task-title { font-weight: 700; font-size: 15px; margin: 0; color: var(--text); }
+    .task-desc { font-size: 13px; color: var(--muted); margin: 2px 0 0; }
+    .task-meta { font-size: 12px; color: #f97316; font-weight: 700; }
+    .btn-validate { background: var(--primary); color: #fff; border: none; padding: 10px 16px; border-radius: 12px; font-weight: 700; box-shadow: 0 10px 20px rgba(37,99,235,0.18); }
+    .btn-validate:hover { filter: brightness(0.95); }
+    .convites-card { border: 1px dashed var(--border); border-radius: 14px; padding: 16px; text-align: center; color: var(--muted); }
+    .link-refresh { font-size: 13px; font-weight: 700; color: var(--primary); cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <div class="hero">
+      <div>
+        <h1>Painel do Fiscal</h1>
+        <p>Veja suas equipes, acompanhe tarefas e convites.</p>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <a class="btn btn-outline-success" href="ranking.html">Placar geral</a>
+        <button id="btnSair" class="btn btn-outline-danger">Sair</button>
+      </div>
+    </div>
+
+    <div id="info" class="subinfo mb-3">Carregando...</div>
+
+    <div class="section-card">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="section-title"><span class="material-icons-round">groups</span> Suas equipes</div>
+        <span class="link-refresh" onclick="carregarContextoFiscal()">⟳ Atualizar</span>
+      </div>
+      <div id="equipesContainer"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title"><span class="material-icons-round">mail</span> Convites para ser fiscal externo</div>
+      <ul id="listaConvites" class="list-unstyled mb-0"></ul>
+    </div>
+
+    <pre id="log" style="display:none;"></pre>
+  </div>
+
+  <script src="backoffice-fiscal.js"></script>
+</body>
+</html>

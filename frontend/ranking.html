@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoPlay | Ranking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f5f7ff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #94a3b8;
+      --border: #e5e7eb;
+      --primary: #2e6bff;
+      --gold: #f7b500;
+      --silver: #cdd5df;
+      --bronze: #d29c6a;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Sora', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 30% 20%, #e6eeff, transparent 40%),
+                  radial-gradient(circle at 80% 0%, #fdf2d7, transparent 45%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 32px 18px 48px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, #2e6bff, #5cf29d);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(46, 107, 255, 0.28);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      background: #ffffffc4;
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
+      backdrop-filter: blur(6px);
+    }
+
+    .btn-refresh {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.08s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+
+    .btn-refresh:active { transform: translateY(1px); }
+    .btn-refresh:hover { box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08); border-color: #d5d9e0; }
+    .btn-refresh:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .podium-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 14px 10px 18px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      border: 1px solid #eef2ff;
+      transition: transform 0.1s ease;
+    }
+
+    .podium-card:hover { transform: translateY(-2px); }
+
+    .podium-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 16px 0 26px;
+      align-items: end;
+    }
+
+    .pos-1 { transform: translateY(-6px); padding: 18px 12px 22px; }
+    .pos-2 { transform: translateY(4px); }
+    .pos-3 { transform: translateY(6px); }
+
+    .rank-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 13px;
+      color: #fff;
+      position: absolute;
+      top: -12px;
+      right: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .badge-gold { background: var(--gold); }
+    .badge-silver { background: var(--silver); color: #4b5563; }
+    .badge-bronze { background: var(--bronze); }
+
+    .circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: var(--text);
+      background: radial-gradient(circle at 30% 30%, #ffffff, #e9efff);
+      border: 3px solid #e7ecf7;
+      position: relative;
+    }
+
+    .pos-1 .circle { width: 82px; height: 82px; border: 3px solid rgba(247, 181, 0, 0.3); }
+    .pos-2 .circle { border: 3px solid rgba(205, 213, 223, 0.5); }
+    .pos-3 .circle { border: 3px solid rgba(210, 156, 106, 0.35); }
+
+    .team-name { font-weight: 800; font-size: 15px; margin-bottom: 4px; letter-spacing: -0.01em; }
+    .team-points { color: var(--primary); font-weight: 800; }
+    .team-sub { color: var(--muted); font-size: 13px; margin-top: 2px; }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 22px 0 12px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .count-pill {
+      padding: 8px 12px;
+      background: #eef2ff;
+      color: #6366f1;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .row {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow);
+      border: 1px solid #eef2ff;
+      transition: transform 0.08s ease;
+    }
+
+    .row:hover { transform: translateY(-1px); }
+
+    .row-rank {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #f3f4ff 0%, #e5e7fb 100%);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #3b4a6b;
+      flex-shrink: 0;
+    }
+
+    .row-info { flex: 1; min-width: 0; }
+    .row-team { font-weight: 800; font-size: 15px; margin: 0; }
+    .row-sub { margin: 2px 0 0; color: var(--muted); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .row-meta { display: flex; align-items: center; gap: 10px; }
+    .row-points { padding: 8px 12px; background: #eef2ff; color: #243b80; border-radius: 10px; font-weight: 800; font-size: 13px; }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.16); }
+
+    .empty-msg {
+      margin: 18px 0;
+      padding: 16px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 600;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px dashed var(--border);
+    }
+
+    .status-line {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .app { padding-top: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-mark">
+          <span class="material-icons-round" aria-hidden="true">eco</span>
+        </div>
+        <span>EcoPlay Ranking</span>
+      </div>
+      <button class="btn-refresh" type="button" data-refresh hidden>
+        <span class="material-icons-round" aria-hidden="true">refresh</span>
+        Atualizar
+      </button>
+    </div>
+
+    <div class="chip" aria-live="polite" data-status>Carregando ranking...</div>
+
+    <section class="podium-grid" data-podium aria-label="Top 3 equipes"></section>
+
+    <div class="section-head">
+      <div>
+        <p class="section-title">Classificação Geral</p>
+      </div>
+      <div class="count-pill" data-count>-- equipes</div>
+    </div>
+
+    <section class="list" data-list aria-label="Demais equipes"></section>
+  </main>
+
+  <script src="ranking.js"></script>
+</body>
+</html>
